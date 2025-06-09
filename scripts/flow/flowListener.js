@@ -27,10 +27,23 @@ const _pGetFlowInfo = async (state, { fallbackActionIdentifier = null } = {}) =>
             itemName: state.item?.name,
             fallbackActionIdentifier,
         }),
+        weaponProfile: state.item.system?.active_profile?.name,
         targetTokens: zippedTargetInfo.map(({ target }) => target.target).filter(Boolean),
         targetsMissed: new Set(
             zippedTargetInfo
                 .filter(({ hit_result }) => !hit_result?.hit)
+                .map(({ target }) => target?.target?.id)
+                .filter(Boolean),
+        ),
+        targetsCrit: new Set(
+            zippedTargetInfo
+                .filter(({ hit_result }) => hit_result?.crit)
+                .map(({ target }) => target?.target?.id)
+                .filter(Boolean),
+        ),
+        targetsLockon: new Set(
+            zippedTargetInfo
+                .filter(({ hit_result }) => hit_result?.usedLockon)
                 .map(({ target }) => target?.target?.id)
                 .filter(Boolean),
         ),

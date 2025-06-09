@@ -1,11 +1,22 @@
 import { MODULE_ID } from "../consts.js";
 
 export class FlowInfo {
-    constructor({ sourceToken, macroUuid, targetTokens = null, targetsMissed = new Set() }) {
+    constructor({
+        sourceToken,
+        macroUuid,
+        targetTokens = null,
+        weaponProfile = null,
+        targetsMissed = new Set(),
+        targetsCrit = new Set(),
+        targetsLockon = new Set(),
+    }) {
         this.sourceToken = sourceToken;
         this.macroUuid = macroUuid;
+        this.weaponProfile = weaponProfile;
         this.targetTokens = targetTokens;
         this.targetsMissed = targetsMissed;
+        this.targetsCrit = targetsCrit;
+        this.targetsLockon = targetsLockon;
     }
 }
 
